@@ -63,6 +63,23 @@
   const observeReveal = (root = document) => $$('.reveal, .step', root).forEach((el) => revealObserver.observe(el));
   observeReveal();
 
+  // ---------- Videos vor dem Speichern schützen ----------
+  // Kein Download-Button, kein Rechtsklick-Menü („Video speichern unter …“),
+  // kein Ziehen auf den Desktop, kein langes Drücken auf dem Handy.
+  const protectVideo = (video) => {
+    video.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback');
+    video.disablePictureInPicture = true;
+    video.disableRemotePlayback = true;
+    video.draggable = false;
+  };
+  const isProtectedMedia = (el) => el.closest?.('video, .work__media, .hero__card, .lightbox__inner');
+  document.addEventListener('contextmenu', (e) => {
+    if (isProtectedMedia(e.target)) e.preventDefault();
+  });
+  document.addEventListener('dragstart', (e) => {
+    if (isProtectedMedia(e.target)) e.preventDefault();
+  });
+
   // ---------- Arbeiten ----------
   const worksEl = $('#works');
   const filtersEl = $('#filters');
@@ -79,6 +96,7 @@
     }
     if (work.video) {
       const video = document.createElement('video');
+      protectVideo(video);
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
@@ -207,6 +225,7 @@
   // ---------- Lightbox ----------
   const lightbox = $('#lightbox');
   const lbVideo = $('#lightboxVideo');
+  protectVideo(lbVideo);
   let lastFocus = null;
 
   function openLightbox(work) {
