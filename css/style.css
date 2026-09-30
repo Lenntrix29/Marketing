@@ -617,6 +617,14 @@ em { font-style: italic; color: var(--clay); }
 }
 .lightbox__close:hover { transform: rotate(90deg); background: rgba(244, 239, 232, 0.1); }
 
+/* Videos & Vorschaubilder: kein Speichern per langem Drücken / Ziehen */
+.work__media, .hero__card, .lightbox video {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 /* ---------- Scroll-Reveal ---------- */
 .reveal {
   opacity: 0;
