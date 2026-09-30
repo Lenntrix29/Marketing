@@ -63,19 +63,6 @@
   const observeReveal = (root = document) => $$('.reveal, .step', root).forEach((el) => revealObserver.observe(el));
   observeReveal();
 
-  // ---------- Social Links ----------
-  const social = $('#socialLinks');
-  [['instagram', 'Instagram'], ['tiktok', 'TikTok']].forEach(([key, label]) => {
-    const url = social.dataset[key];
-    if (!url) return;
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.textContent = `${label} ↗`;
-    social.append(a);
-  });
-
   // ---------- Arbeiten ----------
   const worksEl = $('#works');
   const filtersEl = $('#filters');
@@ -192,10 +179,23 @@
     });
   });
 
-  fetch('/api/works')
+  // Arbeiten werden aus works.json geladen – neue Videos dort eintragen.
+  const normalize = (w) => ({
+    title: '',
+    client: '',
+    category: 'Reels',
+    description: '',
+    format: 'portrait',
+    featured: false,
+    poster: '',
+    link: '',
+    ...w,
+  });
+
+  fetch('works.json', { cache: 'no-cache' })
     .then((r) => r.json())
     .then((data) => {
-      works = data;
+      works = data.filter((w) => w.video).map(normalize);
       renderHeroStack();
       renderFilters();
       renderWorks();
@@ -250,30 +250,42 @@
   });
 
   // ---------- Kontaktformular ----------
+  // Ohne data-endpoint: öffnet eine vorausgefüllte E-Mail.
+  // Mit data-endpoint (z. B. Formspree): sendet die Anfrage direkt.
   const form = $('#contactForm');
   const status = $('#formStatus');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form));
+    if (data._gotcha) return;
     if (!data.name.trim() || !data.email.trim() || !data.message.trim()) {
       status.textContent = 'Bitte fülle Name, E-Mail und Nachricht aus.';
       return;
     }
+
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) {
+      const subject = `Anfrage von ${data.name}${data.studio ? ` (${data.studio})` : ''}`;
+      const body = `${data.message}\n\n—\n${data.name}\n${data.email}${data.studio ? `\n${data.studio}` : ''}`;
+      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.textContent = 'Dein E-Mail-Programm öffnet sich – einfach absenden. ✦';
+      return;
+    }
+
     const btn = $('button[type=submit]', form);
     btn.disabled = true;
     status.textContent = 'Wird gesendet …';
     try {
-      const res = await fetch('/api/inquiries', {
+      const res = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error);
+      if (!res.ok) throw new Error();
       form.reset();
       status.textContent = 'Danke! Ich melde mich in Kürze bei dir. ✦';
-    } catch (err) {
-      status.textContent = err.message || 'Da ist etwas schiefgelaufen. Schreib mir gern direkt per E-Mail.';
+    } catch {
+      status.textContent = `Da ist etwas schiefgelaufen. Schreib mir gern direkt an ${form.dataset.email}.`;
     } finally {
       btn.disabled = false;
     }

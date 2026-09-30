@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{brandName}} · Content & Videos für Wellness</title>
-  <meta name="description" content="{{brandName}} – Social-Media-Content, Reels und Videos für Wellness-Bars, Massagestudios und Spas. {{tagline}}" />
-  <meta property="og:title" content="{{brandName}} · Content & Videos für Wellness" />
-  <meta property="og:description" content="{{tagline}}" />
+  <title>Studio Lumen · Content & Videos für Wellness</title>
+  <meta name="description" content="Studio Lumen – Social-Media-Content, Reels und Videos für Wellness-Bars, Massagestudios und Spas. Content, der sich anfühlt wie ein tiefer Atemzug." />
+  <meta property="og:title" content="Studio Lumen · Content & Videos für Wellness" />
+  <meta property="og:description" content="Content, der sich anfühlt wie ein tiefer Atemzug." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#f4efe8" />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
 
   <!-- Navigation -->
   <header class="nav" id="nav">
-    <a href="#top" class="nav__logo">{{brandName}}</a>
+    <a href="#top" class="nav__logo">Studio Lumen</a>
     <nav class="nav__links" id="navLinks" aria-label="Hauptnavigation">
       <a href="#leistungen">Leistungen</a>
       <a href="#arbeiten">Arbeiten</a>
@@ -173,7 +173,7 @@
         <dl class="facts reveal">
           <div><dt>Fokus</dt><dd>Wellness & Massage</dd></div>
           <div><dt>Formate</dt><dd>Reels · Film · Foto</dd></div>
-          <div><dt>Standort</dt><dd>{{location}}</dd></div>
+          <div><dt>Standort</dt><dd>Deutschland</dd></div>
         </dl>
       </div>
     </section>
@@ -185,11 +185,20 @@
           <p class="eyebrow reveal">Kontakt</p>
           <h2 class="section__title reveal">Lass uns deinen Ort <em>sichtbar</em> machen.</h2>
           <p class="reveal">Erzähl mir kurz von deinem Studio – ich melde mich innerhalb von 48 Stunden.</p>
-          <a class="contact__mail reveal" href="mailto:{{email}}">{{email}}</a>
-          <div class="contact__social reveal" id="socialLinks" data-instagram="{{instagram}}" data-tiktok="{{tiktok}}"></div>
+          <a class="contact__mail reveal" href="mailto:hallo@example.com">hallo@example.com</a>
+          <div class="contact__social reveal">
+            <!-- Eigene Links eintragen (nicht benötigte Zeilen einfach löschen) -->
+            <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+            <a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a>
+          </div>
         </div>
 
-        <form class="form reveal" id="contactForm" novalidate>
+        <!--
+          Ohne weitere Einrichtung öffnet das Formular das E-Mail-Programm des Besuchers.
+          Optional: kostenlosen Formspree-Endpunkt (formspree.io) bei data-endpoint eintragen,
+          dann werden Anfragen direkt an deine E-Mail geschickt.
+        -->
+        <form class="form reveal" id="contactForm" novalidate data-email="hallo@example.com" data-endpoint="">
           <label class="field">
             <span>Name</span>
             <input type="text" name="name" autocomplete="name" required />
@@ -206,7 +215,7 @@
             <span>Nachricht</span>
             <textarea name="message" rows="4" required></textarea>
           </label>
-          <label class="hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          <label class="hp" aria-hidden="true">Website<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
           <button type="submit" class="btn btn--light">Anfrage senden</button>
           <p class="form__status" id="formStatus" role="status"></p>
         </form>
@@ -215,8 +224,8 @@
   </main>
 
   <footer class="footer">
-    <span>© <span id="year"></span> {{brandName}}</span>
-    <span class="footer__tagline">{{tagline}}</span>
+    <span>© <span id="year"></span> Studio Lumen</span>
+    <span class="footer__tagline">Content, der sich anfühlt wie ein tiefer Atemzug.</span>
     <a href="#top">Nach oben ↑</a>
   </footer>
 
@@ -235,6 +244,6 @@
     </div>
   </div>
 
-  <script src="/js/main.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
