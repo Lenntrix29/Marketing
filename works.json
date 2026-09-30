@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "title": "Deine private Wellness-Auszeit",
+    "client": "forwellness · Mülheim an der Ruhr",
+    "category": "Reels",
+    "description": "Das ganze Spa für euch allein: privater Whirlpool, eigene Sauna, Lounge & Snacks – als ruhiger POV-Reel erzählt.",
+    "format": "portrait",
+    "featured": true,
+    "video": "videos/forwellness-private-auszeit.mp4",
+    "poster": "videos/forwellness-private-auszeit.jpg",
+    "link": "https://forwellness.de"
+  },
+  {
+    "title": "Geheimtipp im Ruhrgebiet",
+    "client": "forwellness · Mülheim an der Ruhr",
+    "category": "Reels",
+    "description": "Eine Wellness-Suite nur für zwei – Whirlpool, Sauna, Massagesessel und Lounge, mit Untertiteln für den Feed.",
+    "format": "portrait",
+    "featured": true,
+    "video": "videos/forwellness-geheimtipp-ruhrgebiet.mp4",
+    "poster": "videos/forwellness-geheimtipp-ruhrgebiet.jpg",
+    "link": "https://forwellness.de"
+  },
+  {
+    "title": "Lounge & Massagesessel",
+    "client": "forwellness · Mülheim an der Ruhr",
+    "category": "Imagefilm",
+    "description": "Cineastische Atmosphäre ohne Worte: warmes Licht, Massagesessel und Drinks in der Lounge.",
+    "format": "portrait",
+    "featured": true,
+    "video": "videos/forwellness-lounge-massage.mp4",
+    "poster": "videos/forwellness-lounge-massage.jpg",
+    "link": "https://forwellness.de"
+  }
+]

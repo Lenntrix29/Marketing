@@ -356,7 +356,8 @@ em { font-style: italic; color: var(--clay); }
 
 .works {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 340px));
+  justify-content: center;
   gap: clamp(1rem, 2vw, 1.8rem);
   align-items: start;
 }
